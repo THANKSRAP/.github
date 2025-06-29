@@ -198,6 +198,7 @@ SpringDotenv(환경변수 관리)라는 의존성을 Spring Framework에서 사�
 
 - 커밋 메시지는 항상 Commit Type과 Commit subject를 포함해 작성합니다.
 - Commit subject는 현재형, 명령문 형태로 작성합니다.
+- 🔗 [Github Convention 참고 블로그](https://puleugo.tistory.com/165)
 
 | 타입         | 설명                                 |
 |--------------|--------------------------------------|
