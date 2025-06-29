@@ -1,9 +1,54 @@
-- Spring Framework 기반 웹 애플리케이션 프로젝트입니다.
-- Spring Boot의 자동 설정을 사용하지 않고, XML 기반으로 DispatcherServlet, web.xml 등을 설정할 예정입니다.
-- 기본적인 Spring MVC 설정부터, 브랜치별로 기능을 확장해나가며 진행했습니다.
-- Thymleaf를 사용해 View를 구현할 예정입니다.
+# 🛍️ 땡스랩 쇼핑몰 (ThanksLab Shopping Mall)
 
-#### Spring MVC 설정 및 설정 파일
+Spring Framework 기반 웹 애플리케이션 프로젝트입니다. Spring을 통해 레거시 구조를 경험해보고자 했습니다. Spring Boot의 자동 설정 기능을 사용하지 않고 직접 설정을 해보며 Spring과 Servlet, Tomcat 등의 연결이 어떻게 이루어지는지 이해해보고자 했습니다.  
+
+DB 모델링 부터 진행하여 Backend를 구현했습니다. Spring Boot의 자동 설정을 사용하지 않고, XML 기반으로 DispatcherServlet, web.xml 등을 설정할 예정입니다. 기본적인 Spring MVC 설정부터, 브랜치별로 기능을 확장해나가며 진행했습니다. Thymleaf를 사용해 View를 구현할 예정입니다.
+
+
+
+---
+
+## 📌 프로젝트 개요
+
+- **프로젝트명**: '땡스랩'
+- **개요**: 여성 샌들 쇼핑몰인 ‘댕스랩’을 벤치마킹하여 상품 탐색, 장바구니, 주문, 회원 관리 등의 기능을 제공하는 **웹 기반 쇼핑몰 서비스**
+
+
+---
+
+## ⚙️ 사용 기술 스택
+
+Spring을 통해 레거시 구조를 경험해보고자 했습니다. Spring Boot의 자동 설정 기능을 사용하지 않고 직접 설정을 해보며 Spring과 Servlet, Tomcat 등의 연결이 어떻게 이루어지는지 이해해보고자 했습니다. 
+
+JPA와 같이 자동화된 ORM 대신 MyBatis를 사용해 복잡한 SQL 쿼리를 직접 작성하고 최적화해보고자 했습니다. DAO에 대한 이해도를 높이고자 했습니다.  
+
+Docker를 통해 DB 환경 등 개발 환경을 통일 시켜서 진행하고자 했습니다. 
+
+
+- 언어
+  - Java (v17)
+- 템플릿 엔진
+  - Thymleaf
+- 웹 서버 프레임워크
+  - Spring Framework (v5.3.x)
+- DB 연동
+  - MyBatis
+- 인증/인가
+  - JWT (Json Web Token)
+- DB
+  - MySQL 8.x
+- DevOps
+  - Docker
+- 보안
+  - Spring Security
+- ETC
+  - Lombok, Validation, Junit 등
+
+
+---
+
+## 🧾 설정 파일 설명
+
 - `web.xml` : DispatcherServlet 등록, Context 설정
 - `dispatcher-servlet.xml` : Spring MVC Controller, View 설정
 - `root-context.xml` : 공통 빈 등록, DB 연동 등
@@ -11,52 +56,90 @@
 - `WEB-INF/views/` : Thymleaf View 저장 위치
 
 
-
 ---
 
-### 1. **프로젝트 개요**
+## 🛠️ 환경변수 관리 (.env)
 
-- **프로젝트명**: '땡스랩'
-- **개요**: 여성 샌들 쇼핑몰인 ‘댕스랩’을 벤치마킹하여 상품 탐색, 장바구니, 주문, 회원 관리 등의 기능을 제공하는 **웹 기반 쇼핑몰 서비스**
-- **개발 목적**: 실제 쇼핑몰 서비스 구조를 학습하고, 웹 백엔드 개발 및 배포 경험을 쌓기 위함
-
-
----
-
-
-### 2. **역할 분담**
-
-| 이름      | 담당 영역             | 상세 설명                                              |
-| ------- | ----------------- |----------------------------------------------------|
-| **김지후** | **상품(Item) 파트**   | `item`, `item_image`, `category`, `item_option`    |
-| **강민서** | **주문(Order) 파트**  | `order`, `order_item`, `payment`, `delivery`       |
-| **나영문** | **게시판(Board) 파트** | `item_question`, `question_answer`, `notice` |
-| **나현지** | **장바구니(Cart) 파트** | `cart`                                             |
-| **임홍빈** | **회원(User) 파트**   | `user`, `address`, `wishlist` |
+`.env` 파일을 사용해 환경변수를 통합으로 관리할 예정입니다.  
+현재는 `.gitignore`에 등록하지 않아, 환경변수에 대한 정보를 볼 수 있습니다. 추후 리팩토링 예정입니다.  `.env`로 환경변수를 관리할 수 있다면 `.env.dev`, `.env.prod` 등으로 나누어서 관리할 수 있습니다.  
+SpringDotenv(환경변수 관리)라는 의존성을 Spring Framework에서 사용할 수 있는지 확인이 필요합니다.  
 
 
 
 
 ---
 
-### 3. **사용 기술 스택**
+## 📁 프로젝트 구조
 
-| 구분 | 기술 스택 | 설명 |
-| --- | --- | --- |
-| **언어** | Java (v17) | JVM 기반 객체지향 언어 |
-| **템플릿 엔진** | Thymeleaf | 서버사이드 렌더링을 위한 템플릿 엔진 |
-| **웹 서버 프레임워크** | Spring Framework (v5.3.x) | Java 기반 백엔드 프레임워크 |
-| **DB 연동** | MyBatis | SQL Mapper 기반의 ORM 프레임워크, XML 기반 쿼리 사용 |
-| **인증/인가** | ~~JWT (JSON Web Token)~~ | ~~토큰 기반 Stateless 인증 방식, 사용자 인증 처리에 사용~~ |
-| **DB** | MySQL 8.x | 관계형 데이터베이스 |
-| **DevOps** | Docker | 개발/배포 환경 일관성을 위한 컨테이너 기반 운영 도구 |
-| **보안** | ~~Spring Security~~ | ~~보안 및 코드~~ |
-| **etc** | Lombok, Validation, 테스트 관련 의존성 | 코드 생성 향상, 입력값 검증, 테스트 |
+`도메인형 아키텍처`를 채택해 구현을 진행했습니다.  
+기능이나 계층(Service, Controller 등)을 기준으로 나누는 전통적인 방식(Layered Architecture)이 아닌, 업무 도메인 중심으로 디렉토리와 클래스를 구성함으로써 다음과 같은 이점을 얻고자 했습니다:
+- 높은 응집도: 관련된 도메인 클래스들이 하나의 디렉토리에 모여 있어 변경이나 유지보수가 쉬움
+- 관심사의 분리(Separation of Concern): 각 도메인의 책임이 명확하게 분리됨
+- 확장 용이성: 기능 추가 시 해당 도메인 디렉토리 내에서만 작업 가능
+- 협업 효율 증가: 역할 분담이 도메인 단위로 나뉘므로 팀원이 각 도메인에 집중하기 쉬움
+
+> 도메인마다 공통으로 사용하는 기능(ex: 예외 처리, 보완 설정, 로깅, 인터셉터 등)은 별도 공통 패키지 또는 설정 패키지(ex: config, common 패키지)에 분리해서 관리할 예정입니다.
+
+
+```
+🛍️ shoppingmall/
+├── .idea/                           # IntelliJ 설정 폴더
+├── db/                              # DB 초기화 SQL, ERD 등
+├── logs/                            # 로그 파일 저장 위치
+├── src/
+│   ├── main/
+│   │   ├── java/com/example/shoppingmall/
+│   │   │
+│   │   │── config/                  # 전체 공통 설정
+│   │   │   ├── WebMvcConfig.java
+│   │   │   ├── SecurityConfig.java
+│   │   │   ├── MyBatisConfig.java
+│   │   │   └── JwtTokenProvider.java
+│   │   │
+│   │   │── common/                  # 공통 모듈 (예외, 응답 포맷, 유틸 등)
+│   │   │   ├── exception/
+│   │   │   │   ├── GlobalExceptionHandler.java
+│   │   │   │   ├── CustomException.java
+│   │   │   │   └── ErrorResponse.java
+│   │   │   ├── util/
+│   │   │   │   └── JwtUtil.java
+│   │   │   └── response/
+│   │   │       └── ApiResponse.java
+│   │   │
+│   │   │── user/                    # 회원 도메인
+│   │   │   ├── controller/
+│   │   │   ├── service/
+│   │   │   ├── repository/
+│   │   │   ├── dto/
+│   │   │   └── domain/
+│   │   │
+│   │   │── item/                    # 상품 도메인
+│   │   │── cart/                    # 장바구니 도메인
+│   │   │── order/                   # 주문 도메인
+│   │   │── board/                   # 게시판/문의 도메인
+│   │   │   └── ...
+│   │   │
+│   │   └── resources/
+│   │       ├── dispatcher-servlet.xml     # Spring MVC 설정
+│   │       ├── root-context.xml           # 공통 빈 설정
+│   │       ├── mapper/                    # MyBatis Mapper XML
+│   │       └── static/, templates/        # 정적 자원 및 Thymeleaf 뷰
+│   │
+│   └── test/                      # 테스트 코드
+│       └── java/com/example/shoppingmall/
+├── target/                        # Maven 빌드 아웃풋
+├── docker-compose.yml             # 개발환경 통합을 위한 Docker 설정
+├── pom.xml                        # 프로젝트 의존성 정의
+├── .env                           # 환경 변수 파일 (.gitignore 대상 예정)
+├── .gitignore
+└── README.md
+```
+
 
 
 ---
 
-### 4. **시스템 아키텍처**
+## 🔧 시스템 아키텍처
 
 ```
 [사용자]
@@ -71,47 +154,77 @@
 + Docker로 서버와 DB 환경 컨테이너 구성 및 실행
 ```
 
----
-
-### 5. **주요 기능 명세**
-
-- 추후 Admin 페이지 개발 예정
-  - 회원 관리, 상품 관리, 매출 분석 등 관리자 전용 기능 구현 예정
-
-
-| **기능 구분**  | **기능명**             | **설명**                         |
-| ---------- | ------------------- | ------------------------------ |
-| **회원 관리**  | 회원가입, 로그인, 로그아웃     | 세션 기반 인증 시스템 (추후 JWT 인증 도입 예정) |
-| **상품 탐색**  | 카테고리별 상품 조회, 검색, 정렬 | Thymeleaf 템플릿을 통한 동적 페이지 렌더링   |
-| **상품 리뷰**  | 상품 리뷰 작성 및 조회       | 실제 구매자만 작성 가능하도록 제한            |
-| **장바구니**   | 상품 담기, 수량 변경, 삭제    | 로그인 사용자 기준으로 관리                |
-| **주문 기능**  | 주문 생성 및 주문 내역 조회    | 결제 기능은 추후 도입 예정                |
-| **게시판 기능** | 상품 문의/답변, 공지사항      | 커뮤니티 메뉴를 통해 사용자 소통 기능 제공       |
 
 
 
 ---
 
-### 6. **DB 설계**
+## 🚀 주요 기능 명세
 
-#### 초기 ERD
-https://www.erdcloud.com/d/trrPYnTx93T5C5AnB
-
-#### 실제 사용 ERD
-https://www.erdcloud.com/d/2wsusuEasvGatRfzH
+| 기능 영역     | 세부 기능                         | 설명                                 |
+|------------|--------------------------------|------------------------------------|
+| 회원 관리    | 회원가입, 로그인, 로그아웃            | 세션 기반 인증 시스템 (JWT 도입 예정)     |
+| 상품 탐색    | 카테고리별 조회, 검색, 정렬           | Thymeleaf를 통한 동적 페이지 렌더링       |
+| 상품 리뷰    | 리뷰 작성 및 조회                    | 구매자만 리뷰 작성 가능                    |
+| 장바구니     | 상품 담기, 수량 변경, 삭제            | 로그인 사용자의 장바구니 세션 기반 관리     |
+| 주문 기능    | 주문 생성 및 조회                    | 결제 기능은 추후 추가 예정                |
+| 게시판 기능  | 상품 문의/답변, 공지사항             | 커뮤니티/고객센터 기능 제공               |
+| 관리자 기능  | 회원/상품/매출 관리 (예정)            | 관리자 전용 Admin 페이지 예정             |
 
 
 
 ---
 
-### 7. **보안 및 인증 처리**
+## 🧮 DB 설계
 
-- 세션기반 로그인 인증
-  - 현재는 세션기반으로 로그인 인증 구현
-  - 추후 JWT 및 Spring Security 적용 예정
-- **~~JWT 기반 로그인 인증~~**
-    - ~~로그인 시 토큰 발급~~
-    - ~~Authorization 헤더에 `Bearer <token>` 형태로 요청~~
-- **~~Spring Security 적용~~**
-    - ~~URL 접근 제어~~
-    - ~~관리자 전용 URL 보호~~
+- 🔗 [초기 ERD 설계](https://www.erdcloud.com/d/trrPYnTx93T5C5AnB)
+- 🔗 [최종 사용 ERD](https://www.erdcloud.com/d/2wsusuEasvGatRfzH)
+
+
+
+---
+
+## 🔀 Git 브랜치 전략
+
+- `main` : 배포(운영)용 브랜치
+- 기능(도메인)별 브랜치 : `feature/user`, `feature/item`, `feature/order` ...
+
+
+
+---
+
+## 📝 커밋 컨벤션
+
+- 커밋 메시지는 항상 Commit Type과 Commit subject를 포함해 작성합니다.
+- Commit subject는 현재형, 명령문 형태로 작성합니다.
+
+| 타입         | 설명                                 |
+|--------------|--------------------------------------|
+| `feat`       | 새로운 기능 추가                      |
+| `fix`        | 버그 수정                            |
+| `docs`       | 문서 수정 (README 등)                 |
+| `style`      | 코드 포맷팅, 세미콜론 누락 등 문법 변경 (기능 변화 없음) |
+| `refactor`   | 코드 리팩토링 (기능 변화 없음)         |
+| `test`       | 테스트 코드 추가/수정                 |
+| `chore`      | 빌드 업무 수정, 패키지 매니저 설정 등 기타 |
+
+- 예시:  
+  `feat: 사용자 회원가입 기능 구현`  
+  `fix: 장바구니 수량 수정 오류 해결`  
+  `docs: README.md 프로젝트 설명 추가`
+
+
+
+---
+
+## 🧑‍🤝‍🧑 팀원 역할 분담(추후 작성 완료)
+
+| 이름      | 담당 영역             | 상세 설명                                              |
+|-----------|----------------------|------------------------------------------------------|
+| 김지후     | 상품(Item) 파트        | `item`, `item_image`, `category`, `item_option` 등 |
+| 강민서     | 주문(Order) 파트       | `order`, `order_item`, `payment`, `delivery`       |
+| 나영문     | 게시판(Board) 파트     | `item_question`, `question_answer`, `notice`        |
+| 나현지     | 장바구니(Cart) 파트     | `cart`                                              |
+| 임홍빈     | 회원(User) 파트        | `user`, `address`, `wishlist`                      |
+
+
