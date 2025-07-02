@@ -64,8 +64,9 @@ Docker를 통해 DB 환경 등 개발 환경을 통일 시켜서 진행하고자
 `.env` 파일을 사용해 환경변수를 통합으로 관리할 예정입니다.  
 현재는 `.gitignore`에 등록하지 않아, 환경변수에 대한 정보를 볼 수 있습니다. 추후 리팩토링 예정입니다.  `.env`로 환경변수를 관리할 수 있다면 `.env.dev`, `.env.prod` 등으로 나누어서 관리할 수 있습니다.  
 SpringDotenv(환경변수 관리)라는 의존성을 Spring Framework에서 사용할 수 있는지 확인이 필요합니다.  
-
-
+- Spring Framework는 Spring Boot와 달리 `.env` 파일이 자동으로 로딩 되지 않음
+- Spring Framework에서는 직접 `.env` 파일을 읽고 `Environment`나 Bean 주입하는 방식으로 사용 
+→ Spring Framework에서는 `.properties` + `@Value` 방식이 더 추천된다고 합니다. 환경변수를 관리하는 방식에 대해서 다시 생각해보고 추후 리팩토링 진행 예정입니다.
 
 
 ---
